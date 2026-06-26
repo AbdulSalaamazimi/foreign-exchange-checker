@@ -139,14 +139,6 @@ Receive
 
 <!-- Currency picker — popover opened from either currency button -->
 
-
-<!-- Dynamic: number of popular currencies -->
-<!-- Dynamic: popular currencies, each row: flag, code, name (a checkmark marks the selected one) -->
-
-Other currencies
-<!-- Dynamic: number of other currencies -->
-<!-- Dynamic: every other currency, each row: flag, code, name -->
-
 <!-- Dynamic: while searching, the list filters to the currencies matching the query -->
 <dialog
     class="currency-picker"
@@ -267,42 +259,147 @@ Other currencies
 </dialog>
 
 <!-- Tabs — collapse into a dropdown on mobile -->
+<nav
+    class="tabs"
+    aria-label="Exchange tools"
+>
+    <div
+        role="tablist"
+        aria-label="Exchange data"
+    >
+        <button
+            id="history-tab"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="history-panel"
+        >
+            History
+        </button>
 
-History
-Compare
-Favorites
-<!-- Dynamic: number of favorited pairs (badge) -->
-Log
+        <button
+            id="compare-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="compare-panel"
+            tabindex="-1"
+        >
+            Compare
+        </button>
+
+        <button
+            id="favorites-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="favorites-panel"
+            tabindex="-1"
+        >
+            Favorites
+
+            <span class="tab-badge">
+                10
+            </span>
+        </button>
+
+        <button
+            id="log-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="log-panel"
+            tabindex="-1"
+        >
+            Log
+
+            <span class="tab-badge">
+                8
+            </span>
+        </button>
+    </div>
+</nav>
 <!-- Dynamic: number of logged conversions (badge) -->
 
 
 <!-- Tab panel: History (default tab) -->
+<h2 class="visually-hidden" id="exchange-data-heading">Exchange data</h2>
 
-Open
-<!-- Dynamic: opening rate for the selected range -->
-Last
-<!-- Dynamic: latest rate -->
-Change
-<!-- Dynamic: change over the range (signed; positive green, negative red) -->
-% change
-<!-- Dynamic: percentage change over the range (▲/▼; positive green, negative red) -->
+<!-- (tablist from Step 6a goes here, conceptually under this heading) -->
 
-<!-- Date range selector -->
-1d
-1w
-1m
-3m
-1y
-5y
+<div
+    id="history-panel"
+    role="tabpanel"
+    aria-labelledby="history-tab"
+    tabindex="0"
+>
+    <dl class="history-stats">
+        <div class="history-stat">
+            <dt>Open</dt>
+            <dd>0.8512</dd>
+        </div>
+        <div class="history-stat">
+            <dt>Last</dt>
+            <dd>0.8530</dd>
+        </div>
+        <div class="history-stat">
+            <dt>Change</dt>
+            <dd class="positive">+0.0018</dd>
+        </div>
+        <div class="history-stat">
+            <dt>% change</dt>
+            <dd class="positive">
+                <span aria-hidden="true">▲</span>
+                <span>+0.21%</span>
+            </dd>
+        </div>
+    </dl>
 
-<!-- Dynamic: active pair, e.g. "USD/EUR" -->
-<!-- Dynamic: latest rate and timestamp, e.g. "0.8530 · May 14 16:00 CET" -->
-<!-- Dynamic: line + area chart of the pair's rate history, with Y-axis (high/mid/low) and X-axis date labels -->
+    <div
+        class="history-range"
+        role="radiogroup"
+        aria-label="Chart date range"
+    >
+        <button id="range-1d" type="button" role="radio" aria-checked="true" tabindex="0">1d</button>
+        <button id="range-1w" type="button" role="radio" aria-checked="false" tabindex="-1">1w</button>
+        <button id="range-1m" type="button" role="radio" aria-checked="false" tabindex="-1">1m</button>
+        <button id="range-3m" type="button" role="radio" aria-checked="false" tabindex="-1">3m</button>
+        <button id="range-1y" type="button" role="radio" aria-checked="false" tabindex="-1">1y</button>
+        <button id="range-5y" type="button" role="radio" aria-checked="false" tabindex="-1">5y</button>
+    </div>
 
-<!-- History empty / error state -->
-No chart data available
-We couldn't load rate history for [pair] right now. This usually clears up in a minute.
+    <section class="history-chart-section">
+        <header class="history-chart-header">
+            <h3>USD/EUR history</h3>
+            <p class="history-rate">0.8530</p>
+            <time datetime="2026-05-14T16:00:00+01:00">May 14 16:00 CET</time>
+        </header>
 
+        <div
+            class="history-chart"
+            role="img"
+            aria-label="Exchange rate history chart"
+            aria-describedby="chart-summary"
+        >
+            <!-- SVG or canvas will be rendered here -->
+        </div>
+
+        <p id="chart-summary" class="visually-hidden">
+            Exchange rate history for USD to EUR over the last month.
+            The rate opened at 0.8512 and most recently closed at 0.8530,
+            an increase of 0.21 percent.
+        </p>
+    </section>
+
+    <div class="history-error" hidden>
+        <h3>No chart data available</h3>
+        <p class="history-error-message">
+            We couldn't load rate history for
+            <span class="history-pair">USD/EUR</span>
+            right now. This usually clears up in a minute.
+        </p>
+    </div>
+</div>
 
 <!-- Tab panel: Compare -->
 
