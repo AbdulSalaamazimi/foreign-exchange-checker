@@ -1,0 +1,120 @@
+:root {
+  /* ===========================================================
+     COLOR — raw scale (exact values from Figma Design System)
+  =========================================================== */
+  --neutral-900: #0A0A0A;
+  --neutral-700: #171719;
+  --neutral-600: #202022;
+  --neutral-500: #2E2E2E;
+  --neutral-400: #3D3D3D;
+  --neutral-300: #454547;
+  --neutral-200: #9D9D9D;
+  --neutral-100: #C6C6C6;
+  --neutral-50:  #FFFFFF;
+
+  --lime-500: #CEF739;
+  --lime-800: #283300;
+  --green-500: #42EB05;
+  --red-500:   #FF4141;
+
+  /* ===========================================================
+     COLOR — semantic aliases (what role each color plays)
+  =========================================================== */
+  --color-bg: var(--neutral-900);              /* page background */
+  --color-surface: var(--neutral-700);          /* converter card, stat boxes */
+  --color-surface-raised: var(--neutral-500);    /* currency trigger buttons */
+  --color-border: var(--neutral-600);            /* stat box borders */
+  --color-border-raised: var(--neutral-400);     /* currency button borders */
+
+  --color-text-primary: var(--neutral-50);
+  --color-text-secondary: var(--neutral-200);
+  --color-text-muted: var(--neutral-100);
+
+  --color-accent: var(--lime-500);
+  --color-accent-strong: var(--lime-800);
+  --color-positive: var(--green-500);
+  --color-negative: var(--red-500);
+
+  /* Confirmed pattern: anything with a lime background always
+     uses neutral-900 text, never neutral-50 (FAVORITED button,
+     LIVE MARKETS badge, active states). One alias, reused everywhere. */
+  --color-on-accent: var(--neutral-900);
+
+  /* Favorite / star toggle button (two full states, from Figma) */
+  --favorite-off-bg: var(--neutral-600);
+  --favorite-off-border: var(--neutral-500);
+  --favorite-off-text: var(--neutral-50);
+
+  --favorite-on-bg: var(--lime-500);
+  --favorite-on-border: var(--lime-500);
+  --favorite-on-text: var(--color-on-accent);
+
+  /* ===========================================================
+     TYPOGRAPHY
+  =========================================================== */
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Confirmed mappings:
+     preset-1 -> big numbers (send/receive amounts)
+     preset-2 -> stat values (Open/Last/Change/%Change)
+     preset-3 -> tab labels / body text
+     preset-5(medium) -> small button/badge labels (FAVORITED, LIVE MARKETS) */
+  --text-1-size: 40px;  --text-1-leading: 100%; --text-1-tracking: -0.5px;
+  --text-2-size: 20px;  --text-2-leading: 120%; --text-2-tracking: -0.5px;
+  --text-3-size: 16px;  --text-3-leading: 120%; --text-3-tracking: 1px;
+  --text-4-size: 14px;  --text-4-leading: 120%; --text-4-tracking: 1px;
+  --text-5-size: 12px;  --text-5-leading: 130%; --text-5-tracking: 0.5px;
+  --text-6-size: 10px;  --text-6-leading: 100%; --text-6-tracking: 0px;
+
+  /* ===========================================================
+     SPACING (exact scale from Figma)
+  =========================================================== */
+  --space-025: 2px;  --space-050: 4px;  --space-075: 6px;
+  --space-100: 8px;  --space-125: 10px; --space-150: 12px;
+  --space-200: 16px; --space-250: 20px; --space-300: 24px;
+  --space-400: 32px; --space-500: 40px; --space-600: 48px;
+  --space-800: 64px;
+
+  /* ===========================================================
+     RADIUS (exact scale; 8 = buttons, 16 = stat boxes, full = pills)
+  =========================================================== */
+  --radius-4: 4px;   --radius-6: 6px;   --radius-8: 8px;
+  --radius-10: 10px; --radius-12: 12px; --radius-16: 16px;
+  --radius-20: 20px; --radius-24: 24px; --radius-full: 999px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
